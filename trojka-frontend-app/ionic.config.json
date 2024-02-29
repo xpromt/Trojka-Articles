@@ -1,0 +1,7 @@
+{
+  "name": "trojka-frontend-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

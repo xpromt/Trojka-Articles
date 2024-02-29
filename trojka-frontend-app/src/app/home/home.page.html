@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title [routerLink]="['/home']">
+      Trojka Articles
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="currentArticleId > 0" (click)="backClick()" slot="start">
+        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="home-container">
+    <ng-container *ngIf="!isLastArticle">
+      <ion-card *ngFor="let article of currentChildArticles" (click)="goDeeper(article)">
+        <ion-card-header>
+          <ion-card-title>{{ article.title.rendered }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content
+          [innerHTML]="article.excerpt.rendered">
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+    <ng-container *ngIf="isLastArticle">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ currentArticle.title.rendered }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content
+          [innerHTML]="currentArticle.content.rendered">
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
+</ion-content>
