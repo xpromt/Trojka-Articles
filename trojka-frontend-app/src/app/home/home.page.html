@@ -13,25 +13,40 @@
 
 <ion-content [fullscreen]="true">
   <div class="home-container">
-    <ng-container *ngIf="!isLastArticle">
-      <ion-card *ngFor="let article of currentChildArticles" (click)="goDeeper(article)">
-        <ion-card-header>
-          <ion-card-title>{{ article.title.rendered }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content
-          [innerHTML]="article.excerpt.rendered">
-        </ion-card-content>
+    @if (!isLastArticle) {
+      @for (article of currentChildArticles; track article.id) {
+      <ion-card (click)="openChildArticle(article)">
+        <div class="card-container">
+          <div class="card-image">
+            <img ngSrc="{{article.picture}}" fill alt="Article image" priority>
+          </div>
+          <div class="card-content">
+            <ion-card-header>
+              <ion-card-title>{{ article.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content
+              [innerHTML]="article.excerpt">
+            </ion-card-content>
+          </div>
+        </div>
       </ion-card>
-    </ng-container>
-    <ng-container *ngIf="isLastArticle">
+      }
+    } @else {
       <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{ currentArticle.title.rendered }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content
-          [innerHTML]="currentArticle.content.rendered">
-        </ion-card-content>
+        <div class="card-container__last">
+          <div class="card-image">
+            <img ngSrc="{{currentArticle.picture}}" fill alt="Article image" priority>
+          </div>
+          <div class="card-content">
+            <ion-card-header>
+              <ion-card-title>{{ currentArticle.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content
+              [innerHTML]="currentArticle.content">
+            </ion-card-content>
+          </div>
+        </div>
       </ion-card>
-    </ng-container>
+    }
   </div>
 </ion-content>

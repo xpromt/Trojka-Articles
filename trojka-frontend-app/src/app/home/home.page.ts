@@ -17,7 +17,7 @@ import {
 import {ArticleService} from "../services/article.service";
 import {Article} from "../models/Article";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {JsonPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {addIcons} from "ionicons";
 import {chevronBack, chevronForward} from "ionicons/icons";
 
@@ -26,7 +26,7 @@ import {chevronBack, chevronForward} from "ionicons/icons";
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, RouterLink, IonCard, IonCardHeader, IonCardTitle, IonCardContent, NgForOf, NgIf, IonButtons, IonBackButton, IonNav, IonButton, IonRouterOutlet, IonIcon, JsonPipe],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, RouterLink, IonCard, IonCardHeader, IonCardTitle, IonCardContent, NgForOf, NgIf, IonButtons, IonBackButton, IonNav, IonButton, IonRouterOutlet, IonIcon, JsonPipe, NgOptimizedImage],
 })
 export class HomePage
 {
@@ -55,7 +55,7 @@ export class HomePage
     {
       if(loaded)
       {
-        this.currentArticle = this.articleService.getArticleById(this.currentArticleId)
+        this.currentArticle = this.articleService.getArticleById(this.currentArticleId);
 
         this.currentChildArticles = this.articleService.getChildArticles(this.currentArticleId);
         this.isLastArticle = this.articleService.isLastArticle(this.currentArticleId);
@@ -74,7 +74,7 @@ export class HomePage
     this.router.navigate(['/article', previousArticleId]);
   }
 
-  goDeeper(article: Article): void
+  openChildArticle(article: Article): void
   {
     if (this.isLastArticle)
     {

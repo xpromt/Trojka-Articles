@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Trojka-Articles-GH.iml" filepath="$PROJECT_DIR$/.idea/Trojka-Articles-GH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/trojka.iml" filepath="$PROJECT_DIR$/.idea/trojka.iml" />
     </modules>
   </component>
 </project>

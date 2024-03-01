@@ -1,0 +1,29 @@
+stages:
+  - build
+
+variables:
+  NODE_VERSION: 14.x
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - cd trojka-frontend-app
+  - apt-get update && apt-get install -y curl
+  - curl -sL https://deb.nodesource.com/setup_$NODE_VERSION | bash -
+  - apt-get install -y nodejs
+  - node -v
+  - npm -v
+  - npm install -g @ionic/cli
+  - npm ci
+
+build:
+  stage: build
+  script:
+    - ionic build --prod
+  artifacts:
+    paths:
+      - www/
+  only:
+    - master
